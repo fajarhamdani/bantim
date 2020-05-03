@@ -35,3 +35,4 @@
 
 /.ruby-gemset
 /.ruby-version
+secrets.yml
