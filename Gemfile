@@ -5,8 +5,6 @@ ruby '2.6.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -39,9 +37,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry'
-  gem 'pry-doc'
-  gem 'pry-byebug'
+  gem 'pry', '~> 0.13.1'
+  gem 'pry-doc', '~> 1.1.0'
+  gem 'pry-byebug', '~> 3.9.0'
 end
 
 group :development do
@@ -52,9 +50,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Security
-  gem 'brakeman'
+  gem 'brakeman', '~> 4.8.1'
   # N+1 checker
-  gem 'bullet'
+  gem 'bullet', '~> 6.1.0'
 end
 
 group :test do
@@ -69,20 +67,18 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Testing
-gem 'rspec'
+gem 'rspec', '~> 3.9.0'
 # for database
-gem 'pg'
+gem 'pg', '~> 1.2.3'
 # Provides arbitrary-precision decimal floating-point number class.
-gem 'bigdecimal'
+gem 'bigdecimal', '~> 2.0.0'
 # User Authentication
-gem 'devise'
+gem 'devise', '~> 4.7.0'
 # Pagination
-gem 'pagy'
-# Faster testing
-gem 'vcr'
+gem 'pagy', '~> 3.8.0'
 # authorization
-gem 'cancan'
+gem 'cancan', '~> 1.6.10'
 # Friendly URL
-gem 'friendly_id'
+gem 'friendly_id', '~> 5.3.0'
 # generating pdf
-gem 'wicked_pdf'
+gem 'wicked_pdf', '~> 2.0.2'
