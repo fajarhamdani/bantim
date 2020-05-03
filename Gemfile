@@ -75,6 +75,7 @@ gem 'pg', '~> 1.2.3'
 gem 'bigdecimal', '~> 2.0.0'
 # User Authentication
 gem 'devise', '~> 4.7.0'
+gem 'devise-encryptable', '~> 0.2.0'
 # Pagination
 gem 'pagy', '~> 3.8.0'
 # authorization
