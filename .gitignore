@@ -32,6 +32,6 @@
 
 /config/secrets.yml
 /config/database.yml
-
+ 
 /.ruby-gemset
 /.ruby-version
