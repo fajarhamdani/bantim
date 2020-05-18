@@ -3,7 +3,7 @@ class DesasController < BaseController
 
   # GET /desas
   def index
-    @desas = Desa.all
+    @desas = Desa.order(:name)
   end
 
   # GET /desas/1
@@ -25,7 +25,7 @@ class DesasController < BaseController
 
     respond_to do |format|
       if @desa.save
-        format.html { redirect_to desas_url, notice: 'Desa was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Desa Berhasil Dibuat.' }
       else
         format.html { render :new }
       end
@@ -36,7 +36,7 @@ class DesasController < BaseController
   def update
     respond_to do |format|
       if @desa.update(desa_params)
-        format.html { redirect_to @desa, notice: 'Desa was successfully updated.' }
+        format.html { redirect_to @desa, notice: 'Desa Berhasil Diubah.' }
       else
         format.html { render :edit }
       end
@@ -47,7 +47,7 @@ class DesasController < BaseController
   def destroy
     @desa.destroy
     respond_to do |format|
-      format.html { redirect_to desas_url, notice: 'Desa was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Desa Berhasil Dihapus.' }
     end
   end
 
@@ -57,7 +57,7 @@ class DesasController < BaseController
       @desa = Desa.friendly.find(params[:id])
 
       if @desa.blank?
-        flash[:notice] = 'Desa tidak ditemukan'
+        flash[:notice] = 'Desa tidak ditemukan.'
         redirect_to desas_url
       end
     end
