@@ -1,13 +1,11 @@
 class DesasController < BaseController
+  add_breadcrumb "Beranda", :root_path
+  
   before_action :set_desa, only: [:show, :edit, :update, :destroy]
-
-  # GET /desas
-  def index
-    @desas = Desa.order(:name)
-  end
 
   # GET /desas/1
   def show
+    @kelompoks = @desa.kelompoks.includes(:people).order(:name)
   end
 
   # GET /desas/new

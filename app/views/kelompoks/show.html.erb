@@ -1,0 +1,72 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Daftar Anggota</h1>
+  <p class="mb-4">Mohon dicek kembali data para anggota nya, silahkan dilengkapi jika ada yang masih belum lengkap.</p>
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary"><%= "Kelompok #{@kelompok.name.capitalize}" %></h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Lengkap</th>
+              <th>Nama Panggilan</th>
+              <th>Tempat Lahir</th>
+              <th>Tgl. Lahir</th>
+              <th>Gol. Darah</th>
+              <th>Status</th>
+              <th>JK</th>
+              <th>No. Telp</th>
+              <th>Pend. Terakhir</th>
+              <th>Keahlian</th>
+              <th>Alamat</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>No</th>
+              <th>Nama Lengkap</th>
+              <th>Nama Panggilan</th>
+              <th>Tempat Lahir</th>
+              <th>Tgl. Lahir</th>
+              <th>Gol. Darah</th>
+              <th>Status</th>
+              <th>JK</th>
+              <th>No. Telp</th>
+              <th>Pend. Terakhir</th>
+              <th>Keahlian</th>
+              <th>Alamat</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <% @people.each_with_index do |person, index| %>
+              <tr>
+                <td><%= index.succ %></td>
+                <td><%= person.fullname %></td>
+                <td><%= person.nickname %></td>
+                <td><%= person.place_of_birth %></td>
+                <td><%= person.date_of_birth %></td>
+                <td><%= person.blood_type %></td>
+                <td><%= person.status %></td>
+                <td><%= person.sex %></td>
+                <td><%= person.phone_number %></td>
+                <td><%= person.education %></td>
+                <td><%= person.expertise %></td>
+                <td><%= person.address %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- /.container-fluid -->

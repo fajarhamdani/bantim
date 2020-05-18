@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_230630) do
+ActiveRecord::Schema.define(version: 2020_05_18_173145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,36 @@ ActiveRecord::Schema.define(version: 2020_05_03_230630) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["slug"], name: "index_desas_on_slug", unique: true
+  end
+
+  create_table "kelompoks", force: :cascade do |t|
+    t.integer "desa_id"
+    t.string "name"
+    t.string "address"
+    t.string "type"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_kelompoks_on_slug", unique: true
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.integer "kelompok_id"
+    t.string "fullname"
+    t.string "nickname"
+    t.string "address"
+    t.string "place_of_birth"
+    t.datetime "date_of_birth"
+    t.integer "blood_type"
+    t.integer "status"
+    t.string "phone_number"
+    t.integer "sex"
+    t.string "education"
+    t.string "expertise"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_people_on_slug", unique: true
   end
 
   create_table "users", force: :cascade do |t|

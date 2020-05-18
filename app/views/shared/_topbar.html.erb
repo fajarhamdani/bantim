@@ -3,7 +3,7 @@
 
   <!-- Notice -->
   <div class="d-md">
-    <span class='text-primary'><%= notice %></span>
+    <%= render_breadcrumbs :separator => ' / ' %>
   </div>
 
   <!-- Topbar Navbar -->
@@ -38,9 +38,14 @@
       </div>
     </li>
   </ul>
-
 </nav>
 <!-- End of Topbar -->
+<% if notice %>
+  <div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Info!</strong> <%= notice %>
+  </div>
+<% end %>
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">

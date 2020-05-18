@@ -84,3 +84,5 @@ gem 'cancan', '~> 1.6.10'
 gem 'friendly_id', '~> 5.3.0'
 # generating pdf
 gem 'wicked_pdf', '~> 2.0.2'
+# Breadcrumbs
+gem "breadcrumbs_on_rails", '~> 4.0.0'
