@@ -86,3 +86,5 @@ gem 'friendly_id', '~> 5.3.0'
 gem 'wicked_pdf', '~> 2.0.2'
 # Breadcrumbs
 gem "breadcrumbs_on_rails", '~> 4.0.0'
+# Set javascript variable from controller
+gem 'gon', '~> 6.3.2'

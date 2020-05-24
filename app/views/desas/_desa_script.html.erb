@@ -1,0 +1,17 @@
+<script>
+  $(document).ready(function() {
+    loadSidebarToggle();
+    loadBarChart(gon.kelompok_names, gon.person_each_kelompok, gon.total_person);
+  });
+
+  function editKelompok(kelompokId){
+  	$.ajax({
+      type: 'GET',
+      dataType: 'script',
+      url: '/kelompoks/'+kelompokId+'/edit',
+      success: function(response){
+      	$('#ModalCenter').modal('show');
+      }
+    });
+  };
+</script>

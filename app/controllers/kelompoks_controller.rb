@@ -1,20 +1,12 @@
 class KelompoksController < BaseController
-  add_breadcrumb "Beranda", :root_url
-  
   before_action :set_kelompok, only: [:show, :edit, :update, :destroy]
+  before_action :set_desa, onlye: [:create, :update]
   
   # GET /kelompoks/1
   def show
-    add_breadcrumb @desa.name.capitalize, desa_url(@desa)
+    add_kelompok_breadcrumbs
 
     @people = @kelompok.people
-  end
-
-  # GET /kelompoks/new
-  def new
-    set_desa
-    
-    @kelompok = Kelompok.new
   end
 
   # GET /kelompoks/1/edit
@@ -23,8 +15,6 @@ class KelompoksController < BaseController
 
   # POST /kelompoks
   def create
-    set_desa
-
     @kelompok = Kelompok.new(kelompok_params)
 
     respond_to do |format|
@@ -47,6 +37,7 @@ class KelompoksController < BaseController
         }
       else
         format.html { render :edit }
+        format.js
       end
     end
   end
@@ -64,7 +55,7 @@ class KelompoksController < BaseController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_desa
-      @desa = Desa.friendly.find(params[:desa_id])
+      @desa = Desa.friendly.find_by_slug(params[:desa_id])
 
       if @desa.blank?
         flash[:notice] = 'Desa tidak ditemukan.'
@@ -74,20 +65,27 @@ class KelompoksController < BaseController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_kelompok
-      @kelompok = Kelompok.friendly.find(params[:id])
+      @kelompok = Kelompok.friendly.find_by_slug(params[:id])
 
       if @kelompok.blank?
         flash[:notice] = 'Kelompok tidak ditemukan.'
-        redirect_to kelompoks_url
+        redirect_to root_url
       end
 
-      @desa = @kelompok.desa
+      @desa = @kelompok&.desa
     end
 
     # Only allow a list of trusted parameters through.
     def kelompok_params
-      desa = Desa.friendly.find(params[:desa_id])
+      params_kelompok = params.require(:kelompok).permit(:name, :address)
+      desa = Desa.friendly.find_by_slug(params[:desa_id])
+      params_kelompok = params_kelompok.merge(desa_id: desa.id) if desa.present?
 
-      params.require(:kelompok).permit(:name, :address).merge(desa_id: desa.id)
+      params_kelompok
+    end
+
+    def add_kelompok_breadcrumbs
+      add_breadcrumb @desa.name.capitalize, desa_url(@desa)
+      add_breadcrumb @kelompok.name.capitalize
     end
 end

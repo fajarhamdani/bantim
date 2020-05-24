@@ -1,20 +1,19 @@
 class DesasController < BaseController
-  add_breadcrumb "Beranda", :root_path
-  
   before_action :set_desa, only: [:show, :edit, :update, :destroy]
 
   # GET /desas/1
   def show
+    load_dashboard_variables
+    
     @kelompoks = @desa.kelompoks.includes(:people).order(:name)
-  end
-
-  # GET /desas/new
-  def new
-    @desa = Desa.new
   end
 
   # GET /desas/1/edit
   def edit
+  end
+
+  def new
+    @desa = Desa.new
   end
 
   # POST /desas
@@ -25,7 +24,8 @@ class DesasController < BaseController
       if @desa.save
         format.html { redirect_to root_url, notice: 'Desa Berhasil Dibuat.' }
       else
-        format.html { render :new }
+        format.html
+        format.js
       end
     end
   end
@@ -34,9 +34,10 @@ class DesasController < BaseController
   def update
     respond_to do |format|
       if @desa.update(desa_params)
-        format.html { redirect_to @desa, notice: 'Desa Berhasil Diubah.' }
+        format.html { redirect_to root_url, notice: 'Desa Berhasil Diubah.' }
       else
-        format.html { render :edit }
+        format.html
+        format.js
       end
     end
   end
@@ -52,16 +53,26 @@ class DesasController < BaseController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_desa
-      @desa = Desa.friendly.find(params[:id])
+      @desa = Desa.friendly.find_by_slug(params[:id])
 
       if @desa.blank?
         flash[:notice] = 'Desa tidak ditemukan.'
-        redirect_to desas_url
+        redirect_to root_url
       end
     end
 
     # Only allow a list of trusted parameters through.
     def desa_params
-      params.require(:desa).permit(:name)
+      params.require(:desa).permit(:name,:abr)
+    end
+
+    def load_dashboard_variables
+      @kelompoks = @desa.kelompoks.includes(:people).order(:name)
+
+      gon.push({
+        :kelompok_names => @kelompoks.map{ |kelompok| kelompok.name },
+        :person_each_kelompok => @kelompoks.map{ |kelompok| kelompok.people.size },
+        :total_person => @desa.people.count
+      })
     end
 end

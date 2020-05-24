@@ -2,8 +2,8 @@ class Desa < ApplicationRecord
 	extend FriendlyId
   friendly_id :name, use: :slugged
 
-  validates :name, presence: true
-  validates_uniqueness_of :name, case_sensitive: false
+  validates :name, :abr, presence: true
+  validates_uniqueness_of :name, :abr, case_sensitive: false
 
   has_many :kelompoks
   has_many :people, through: :kelompoks

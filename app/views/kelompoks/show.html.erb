@@ -1,14 +1,15 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
-  <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Daftar Anggota</h1>
-  <p class="mb-4">Mohon dicek kembali data para anggota nya, silahkan dilengkapi jika ada yang masih belum lengkap.</p>
-
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary"><%= "Kelompok #{@kelompok.name.capitalize}" %></h6>
+      <h6 class="m-0 font-weight-bold text-gray-800">
+        <div class="d-sm-flex align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Desa <%= @kelompok.desa_name.capitalize %></h6>
+          <h6 class="m-0 font-weight-bold text-primary">Kelompok <%= @kelompok.name.capitalize %></h6>
+          <h6 class="m-0 font-weight-bold text-primary">Total: <%= @kelompok.people.size %> Jiwa</h6>
+        </div>
+      </h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -70,3 +71,5 @@
 
 </div>
 <!-- /.container-fluid -->
+
+<%= render 'kelompok_script' %>
