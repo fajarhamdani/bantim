@@ -1,6 +1,5 @@
 class KelompoksController < BaseController
   before_action :set_kelompok, only: [:show, :edit, :update, :destroy]
-  before_action :set_desa, onlye: [:create, :update]
   
   # GET /kelompoks/1
   def show
@@ -11,19 +10,29 @@ class KelompoksController < BaseController
 
   # GET /kelompoks/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def new
+    @desa     = Desa.friendly.find_by_slug(params[:desa_id])
+    @kelompok = Kelompok.new
   end
 
   # POST /kelompoks
   def create
+    @desa = Desa.friendly.find_by_slug(params[:desa_id])
     @kelompok = Kelompok.new(kelompok_params)
 
     respond_to do |format|
       if @kelompok.save
+
         format.html {
           redirect_to desa_url(@desa), notice: "Kelompok #{@kelompok.name.capitalize} Berhasil Dibuat." 
         }
       else
-        format.html { render :new }
+        format.js
       end
     end
   end
@@ -33,10 +42,9 @@ class KelompoksController < BaseController
     respond_to do |format|
       if @kelompok.update(kelompok_params)
         format.html {
-          redirect_to redirect_to desa_url(@desa), notice: "Kelompok #{@kelompok.name.capitalize} Berhasil Diubah."
+          redirect_to desa_url(@desa), notice: "Kelompok #{@kelompok.name.capitalize} Berhasil Diubah."
         }
       else
-        format.html { render :edit }
         format.js
       end
     end
@@ -53,16 +61,6 @@ class KelompoksController < BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_desa
-      @desa = Desa.friendly.find_by_slug(params[:desa_id])
-
-      if @desa.blank?
-        flash[:notice] = 'Desa tidak ditemukan.'
-        redirect_to root_url
-      end
-    end
-
     # Use callbacks to share common setup or constraints between actions.
     def set_kelompok
       @kelompok = Kelompok.friendly.find_by_slug(params[:id])

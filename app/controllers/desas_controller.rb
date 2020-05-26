@@ -22,9 +22,8 @@ class DesasController < BaseController
 
     respond_to do |format|
       if @desa.save
-        format.html { redirect_to root_url, notice: 'Desa Berhasil Dibuat.' }
+        format.html { redirect_to root_url, notice: "Desa #{@desa.name} Berhasil Ditambahkan." }
       else
-        format.html
         format.js
       end
     end
@@ -34,9 +33,8 @@ class DesasController < BaseController
   def update
     respond_to do |format|
       if @desa.update(desa_params)
-        format.html { redirect_to root_url, notice: 'Desa Berhasil Diubah.' }
+        format.html { redirect_to root_url, notice: "Desa #{@desa.name} Berhasil Diubah." }
       else
-        format.html
         format.js
       end
     end
@@ -44,9 +42,11 @@ class DesasController < BaseController
 
   # DELETE /desas/1
   def destroy
+    destroyed_desa = @desa.name.capitalize
+
     @desa.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'Desa Berhasil Dihapus.' }
+      format.html { redirect_to root_url, notice: "Desa #{destroyed_desa} Berhasil Dihapus." }
     end
   end
 
@@ -70,6 +70,7 @@ class DesasController < BaseController
       @kelompoks = @desa.kelompoks.includes(:people).order(:name)
 
       gon.push({
+        :desa_id => @desa.slug,
         :kelompok_names => @kelompoks.map{ |kelompok| kelompok.name },
         :person_each_kelompok => @kelompoks.map{ |kelompok| kelompok.people.size },
         :total_person => @desa.people.count
