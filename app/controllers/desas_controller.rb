@@ -1,6 +1,11 @@
 class DesasController < BaseController
   before_action :set_desa, only: [:show, :edit, :update, :destroy]
 
+  # GET /desas
+  def index
+    @desas = Desa.all.order(:name)
+  end
+
   # GET /desas/1
   def show
     load_dashboard_variables
@@ -73,7 +78,7 @@ class DesasController < BaseController
         :desa_id => @desa.slug,
         :kelompok_names => @kelompoks.map{ |kelompok| kelompok.name },
         :person_each_kelompok => @kelompoks.map{ |kelompok| kelompok.people.size },
-        :total_person => @desa.people.count
+        :number_of_people => @desa.people.count
       })
     end
 end

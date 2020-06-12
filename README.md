@@ -22,3 +22,8 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+1. Generate desa and kelompok data
+  rake db:generate_desa_kelompok
+2. Generate person dummy data for testing
+  rake db:generate_dummy_person

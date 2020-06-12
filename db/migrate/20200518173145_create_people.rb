@@ -11,11 +11,11 @@ class CreatePeople < ActiveRecord::Migration[5.2]
     	t.integer :status
     	t.string :phone_number
     	t.integer :sex
-    	t.string :education
+    	t.integer :education
     	t.string :expertise
     	t.string :slug
 
-      t.timestamps
+        t.timestamps
     end
 
     add_index :people, :slug, unique: true

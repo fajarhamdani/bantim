@@ -4,5 +4,9 @@
   </div>
 </div>
 
-<%= render 'daerah' %>
-<%= render 'desa', desas: @desas, desa: @desa, number_of_kelompoks: @number_of_kelompoks %>
+<%= render 'chart_desa', desas: @desas, desa: @desa, number_of_kelompoks: @number_of_kelompoks %>
+<%= render 'chart_umum' %>
+<%= render 'chart_generus' %>
+<%= render 'chart_non_generus' %>
+
+<%= render 'script' %>

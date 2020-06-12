@@ -41,6 +41,8 @@ group :development, :test do
   gem 'pry', '~> 0.13.1'
   gem 'pry-doc', '~> 1.1.0'
   gem 'pry-byebug', '~> 3.9.0'
+  # Catch the mailer
+  gem 'mailcatcher', '~> 0.2.4'
 end
 
 group :development do

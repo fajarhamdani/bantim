@@ -1,0 +1,123 @@
+table#dataTable {
+  box-sizing: content-box;
+  width: max-content;
+}
+
+.card-body-25 {
+  padding: 0.25rem;
+}
+
+.text-female {
+  color: rgba(255, 99, 132, 0.6);
+}
+
+.text-male {
+  color: rgba(54, 162, 235, 0.6);
+}
+
+.color-arcamanik-rgba {
+  color: rgba(255, 10, 10, 0.8);
+}
+.color-arcamanik-hex {
+  color: #ff0a0a;
+}
+
+.color-babakan-sari-rgba {
+  color: rgba(104, 255, 10, 0.8);
+}
+.color-babakan-sari-hex {
+  color: #68ff0a;
+}
+
+.color-cicadas-rgba {
+  color: rgba(255, 210, 10, 0.8);
+}
+.color-cicadas-hex {
+  color: #ffd20a;
+}
+
+.color-karees-selatan-rgba {
+  color: rgba(10, 116, 255, 0.8);
+}
+.color-karees-selatan-hex {
+  color: #0a74ff;
+}
+
+.color-karees-utara-rgba {
+  color: rgba(10, 255, 153, 0.8);
+}
+.color-karees-utara-hex {
+  color: #0aff99;
+}
+
+.color-new-rgba {
+  color: rgba(226, 105, 194, 0.8);
+}
+.color-new-hex {
+  color: #e269c2;
+}
+
+.font-size-200 {
+  font-size: 200px;
+}
+.font-size-150 {
+  font-size: 150px;
+}
+.font-size-100 {
+  font-size: 100px;
+}
+
+.number-of-desa {
+  padding: 95px 90px 0px 50px;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  opacity: 1;
+  padding: 10px;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgba(3, 1, 101, 0.4);
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 7px;
+
+  bottom: 30%;
+  left: 50%;
+  margin-left: 30px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent rgba(3, 1, 101, 0.6) transparent transparent;
+}
+
+.font-size-12 {
+  font-size: 12px;
+}
+.font-size-15 {
+  font-size: 15px;
+}
+.font-size-17 {
+  font-size: 17px;
+}

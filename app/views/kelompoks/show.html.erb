@@ -1,3 +1,9 @@
+<div class="text-center">            
+  <div class="align-items-center mb-4">
+    <div class="h3 font-weight-bold text-primary text-uppercase mb-1"><%= @kelompok.name.capitalize %></div>
+  </div>
+</div>
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
   <!-- DataTales Example -->
@@ -5,9 +11,7 @@
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-gray-800">
         <div class="d-sm-flex align-items-center justify-content-between">
-          <h6 class="m-0 font-weight-bold text-primary">Desa <%= @kelompok.desa_name.capitalize %></h6>
-          <h6 class="m-0 font-weight-bold text-primary">Kelompok <%= @kelompok.name.capitalize %></h6>
-          <h6 class="m-0 font-weight-bold text-primary">Total: <%= @kelompok.people.size %> Jiwa</h6>
+          <h6 class="m-0 font-weight-bold text-gray-800">Total: <%= @kelompok.people.size %> Jiwa</h6>
         </div>
       </h6>
     </div>
@@ -17,12 +21,17 @@
           <thead>
             <tr>
               <th>No</th>
-              <th>Nama Lengkap</th>
-              <th>Nama Panggilan</th>
+              <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                Nama Lengkap
+              </th>
+              <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                Nama Panggilan
+              </th>
+              <th>Status Pernikahan</th>
+              <th>Status</th>
               <th>Tempat Lahir</th>
               <th>Tgl. Lahir</th>
               <th>Gol. Darah</th>
-              <th>Status</th>
               <th>JK</th>
               <th>No. Telp</th>
               <th>Pend. Terakhir</th>
@@ -33,12 +42,17 @@
           <tfoot>
             <tr>
               <th>No</th>
-              <th>Nama Lengkap</th>
-              <th>Nama Panggilan</th>
+              <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                Nama Lengkap
+              </th>
+              <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                Nama Panggilan
+              </th>
+              <th>Status Pernikahan</th>
+              <th>Status</th>
               <th>Tempat Lahir</th>
               <th>Tgl. Lahir</th>
               <th>Gol. Darah</th>
-              <th>Status</th>
               <th>JK</th>
               <th>No. Telp</th>
               <th>Pend. Terakhir</th>
@@ -47,15 +61,16 @@
             </tr>
           </tfoot>
           <tbody>
-            <% @people.each_with_index do |person, index| %>
-              <tr>
-                <td><%= index.succ %></td>
-                <td><%= person.fullname %></td>
+            <% @records.each_with_index do |person, index| %>
+              <tr role="row" class="<%= index.odd? ? 'odd' : 'even' %>">
+                <td data-fixed-columns="true"><%= index.succ %></td>
+                <td data-fixed-columns="true"><%= person.fullname %></td>
                 <td><%= person.nickname %></td>
+                <td><%= show_person_status(person.status) %></td>
+                <td><%= formater_status(person.current_status) %></td>
                 <td><%= person.place_of_birth %></td>
-                <td><%= person.date_of_birth %></td>
+                <td><%= show_date_of_birth(person.date_of_birth) %></td>
                 <td><%= person.blood_type %></td>
-                <td><%= person.status %></td>
                 <td><%= person.sex %></td>
                 <td><%= person.phone_number %></td>
                 <td><%= person.education %></td>
@@ -67,9 +82,13 @@
         </table>
       </div>
     </div>
+
+    <div class="d-flex justify-content-center">
+      <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+    </div>
   </div>
 
 </div>
 <!-- /.container-fluid -->
 
-<%= render 'kelompok_script' %>
+<%= render 'script' %>

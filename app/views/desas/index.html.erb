@@ -20,7 +20,7 @@
               </tr>
             </thead>
             <tbody>
-              <% desas.each do |desa| %>
+              <% @desas.each do |desa| %>
                 <tr>
                   <td><%= desa.name %></td>
                   <td>
@@ -42,36 +42,4 @@
       </div>
     </div>
   </div>
-
-  <div class="col-lg-7 mb-4">
-    <div class="card shadow mb-4">
-      <!-- Card Header - Dropdown -->
-      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-gray-800">Jumlah Kelompok</h6>
-      </div>
-      <!-- Card Body -->
-      <div class="card-body">
-        <div class="chart-pie pt-4 pb-2">
-          <canvas id="myPolarChart"></canvas>
-        </div>
-        <div class="mt-4 text-center small">
-          <span class="mr-2">
-            <i class="fas fa-circle text-primary"></i> <b>Total: <%= number_of_kelompoks %> Kelompok</b>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-
-<!-- Modal Form Desa -->
-<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div id="modal-form-desa" class="modal-content">
-      <%= render 'modal_form', desa: desa %>
-    </div>
-  </div>
-</div>
-<!-- End Modal -->
-
-<%= render 'desa_script' %>

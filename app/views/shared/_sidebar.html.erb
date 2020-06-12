@@ -15,7 +15,7 @@
   <!-- Nav Item - Beranda -->
   <li class="nav-item active">
     <%= link_to root_url, class: "nav-link" do %>
-      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <i class="fas fa-fw fa-chart-area"></i>
       <span>Beranda</span>
     <% end %>
   </li>
@@ -25,16 +25,18 @@
 
   <!-- Nav Item - Charts -->
   <li class="nav-item">
-    <a class="nav-link" href="charts.html">
-      <i class="fas fa-fw fa-chart-area"></i>
-      <span>Charts</span></a>
+    <%= link_to desas_url, class: "nav-link" do %>
+      <i class="fas fa-fw fa-archive"></i>
+      <span>Desa</span>
+    <% end %>
   </li>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link" href="tables.html">
-      <i class="fas fa-fw fa-table"></i>
-      <span>Tables</span></a>
+    <%= link_to 'javascript:void(0);', class: "nav-link" do %>
+      <i class="fas fa-fw fa-calendar"></i>
+      <span>Agenda</span>
+    <% end %>
   </li>
 
   <!-- Divider -->

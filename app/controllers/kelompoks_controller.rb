@@ -5,7 +5,7 @@ class KelompoksController < BaseController
   def show
     add_kelompok_breadcrumbs
 
-    @people = @kelompok.people
+    @pagy, @records = pagy(@kelompok.people)
   end
 
   # GET /kelompoks/1/edit
