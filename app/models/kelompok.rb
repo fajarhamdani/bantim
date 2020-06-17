@@ -9,5 +9,8 @@ class Kelompok < ApplicationRecord
 
 	has_many :people
 
+  has_many :male_person, -> { male }, class_name: 'Person'
+  has_many :female_person, -> { female }, class_name: 'Person'
+
 	delegate :name, to: :desa, prefix: true
 end

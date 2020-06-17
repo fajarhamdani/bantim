@@ -20,12 +20,12 @@ function loadDonutChart(object_id, sex, females, males){
       datasets: [{
         data: [total_of_female, total_of_male],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.5)',
-          'rgba(54, 162, 235, 0.5)'
+          'rgba(194, 10, 120, 0.7)',
+          'rgba(10, 56, 194, 0.7)'
         ],
         borderColor: [
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 99, 132, 1)'
+          'rgba(234, 236, 244, 1)',
+          'rgba(234, 236, 244, 1)'
         ],
         borderWidth: 1
       }]
@@ -49,7 +49,7 @@ function loadDonutChart(object_id, sex, females, males){
         display: true,
         text: setTitle(total_of_female + total_of_male)
       },
-      cutoutPercentage: 80,
+      cutoutPercentage: 50,
     },
   });
   myChart.canvas.parentNode.style.height = '530px';

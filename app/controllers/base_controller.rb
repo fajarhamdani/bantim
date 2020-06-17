@@ -10,24 +10,21 @@ class BaseController < ApplicationController
 
   def load_parent_variables
     @desas = Desa.includes(:kelompoks, :people).order(:name)
+    @first_desa = Desa.order(:name).first
     @number_of_kelompoks   = Kelompok.count
     @number_of_people      = Person.count
-    @desa_names            = @desas.map{ |desa| desa.name }
+    @female_each_areas     = @desas.map{ |desa| desa.female_person.count }
+    @male_each_areas       = @desas.map{ |desa| desa.male_person.count }
     @desa_names_and_people = @desas.map{ |desa| "#{desa.name} : #{desa.people.size} Jiwa" }
     @desa_abrs             = @desas.map{ |desa| desa.abr }
-    @person_each_desa      = @desas.map{ |desa| desa.people.size }
     @kelompoks_each_desa   = @desas.map{ |desa| desa.kelompoks.size }
-    @male_each_areas       = @desas.map{ |desa| desa.male_person.count }
-    @female_each_areas     = @desas.map{ |desa| desa.female_person.count }
-
+  
     gon.push({
-      desa_names: @desa_names,
       desa_names_and_people: @desa_names_and_people,
-      desa_abrs: @desa_abrs,
-      person_each_desa: @person_each_desa,
       number_of_people: @number_of_people,
-      kelompoks_each_desa: @kelompoks_each_desa,
       total_kelompok: @number_of_kelompoks,
+      desa_abrs: @desa_abrs,
+      kelompoks_each_desa: @kelompoks_each_desa,
       sex: SEX_LIST.values,
       male_each_areas: @male_each_areas,
       female_each_areas: @female_each_areas

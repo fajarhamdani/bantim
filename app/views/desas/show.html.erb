@@ -1,9 +1,54 @@
-<div class="text-center">            
-  <div class="align-items-center mb-4">
-    <div class="h3 font-weight-bold text-primary text-uppercase mb-1"><%= @desa.name %></div>
+<div class="row">
+  <div class="col-lg-10">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <% @desas.each_with_index do |desa, index| %>
+        <li class="nav-item" role="presentation">
+          <%= link_to desa.name, desa, class: "nav-link #{@desa.id == desa.id ? 'active' : ''}", role: 'tab', 'aria-selected': true %>
+        </li>
+      <% end %>
+      <li class="nav-item" role="presentation">
+        <%= link_to 'TAMBAH DESA', 'javascript:void(0);', class: 'nav-link font-weight-bold text-primary', role: 'tab', 'aria-selected': true, 'data-toggle': "modal", 'data-target': "#ModalDesa", onclick: "addDesa();" %>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="col-lg-2">
+    <ul class="nav nav-pills mb-3 pull-right" id="pills-tab" role="tablist">
+      <%= link_to 'javascript:void(0);', class: 'btn btn-sm btn-info btn-circle', 'data-toggle': "modal", 'data-target': "#ModalKelompok", onclick: "addKelompok();" do %>
+        <i class="fas fa-plus-circle" title="tambah kelompok"></i>
+      <% end %>
+      <%= link_to 'javascript:void(0);', class: 'btn btn-success btn-circle btn-sm', 'data-toggle': "modal", 'data-target': "#ModalDesa", onclick: "editDesa('#{@desa.slug}');" do %>
+        <i class="fas fa-edit" title="edit <%= @desa.name %>"></i>
+      <% end %>
+      <%= link_to @desa, method: :delete, data: { confirm: "Apakah anda yakin akan menghapus desa #{@desa.name} ?" }, class: 'btn btn-danger btn-circle btn-sm' do %>
+        <i class="fas fa-trash" title="delete <%= @desa.name %>"></i>
+      <% end %>
+    </ul>
   </div>
 </div>
 
-<%= render 'desa' %>
-<%= render 'kelompok', desa: @desa, kelompoks: @kelompoks, kelompok: Kelompok.new %>
+<%= render 'dashboard/chart_umum' %>
+<%= render 'dashboard/chart_generus' %>
+<%= render 'dashboard/chart_non_generus' %>
+
 <%= render 'script' %>
+
+<!-- Modal Form Desa -->
+<div class="modal fade" id="ModalDesa" tabindex="-1" role="dialog" aria-labelledby="ModalCenterDesa" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div id="modal-form-desa" class="modal-content">
+      <%= render 'modal_form_desa', desa: @desa %>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->
+
+<!-- Modal Form Kelompok -->
+<div class="modal fade" id="ModalKelompok" tabindex="-1" role="dialog" aria-labelledby="ModalCenterKelompok" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div id="modal-form-kelompok" class="modal-content">
+      <%= render 'modal_form_kelompok', desa: @desa, kelompok: Kelompok.new %>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->

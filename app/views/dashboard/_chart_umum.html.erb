@@ -4,7 +4,7 @@
     <div class="card shadow mb-4">
       <!-- Card Header - Dropdown -->
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">Jumlah Jiwa Tiap Desa</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Jumlah Jiwa</h6>
       </div>
       <!-- Card Body -->
       <div class="card-body">
@@ -28,7 +28,7 @@
         <div class="chart-pie pt-4">
           <canvas id="PieChartJenisKelamin"></canvas>
         </div>
-        <div class="mt-4 text-center small font-weight-bold">
+        <div class="mt-4 text-center font-weight-bold">
           <span class="mr-2">
             <i class="fas fa-circle text-male"></i><%= " Laki-Laki : #{number_with_precision(@male_each_areas.sum, :precision => 0, :delimiter => ',')}" %>
           </span>

@@ -1,6 +1,8 @@
 namespace :db do
   desc 'Generate desa kelompok'
   task generate_desa_kelompok: :environment do
+    puts 'Starting generate desa and kelompok ......'
+
     list_of_desa = [
                 {
                   name: 'Arcamanik',
@@ -72,11 +74,14 @@ namespace :db do
 
       Kelompok.create(kelompoks)
     end
+
+    puts 'Finish'
   end
 
   desc 'Generate dummy person'
   task generate_dummy_person: :environment do
     next if Kelompok.count.zero?
+    puts 'Starting generate dummy data .........'
       
     kelompoks = Kelompok.all
 
@@ -106,6 +111,8 @@ namespace :db do
 
       Person.create(people)
     end
+
+    puts 'Finish'
   end
 
   private

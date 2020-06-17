@@ -1,41 +1,43 @@
 class PersonFilter
-  def initialize(category:)
+  def initialize(category:, desa: nil)
     @category = category
+    @desa = desa
+    @person = @desa ? @desa.people : Person.all
     @current_date = Date.current
   end
 
   def run
     result = case @category
       when 'balita'
-        Person.where(
+        @person.where(
           "status = ? AND date_of_birth BETWEEN ? AND ?", 0, max_date_of_birth(AGE_OF_BALITA), @current_date
           )
       when 'caberawit'
-        Person.where(
+        @person.where(
           "status = ? AND date_of_birth BETWEEN ? AND ?", 0, max_date_of_birth(AGE_OF_CABERAWIT), min_date_of_birth(AGE_OF_CABERAWIT)
           )
       when 'pra_remaja'
-        Person.where(
+        @person.where(
           "status = ? AND date_of_birth BETWEEN ? AND ?", 0, max_date_of_birth(AGE_OF_PRA_REMAJA), min_date_of_birth(AGE_OF_PRA_REMAJA)
           )
       when 'remaja'
-        Person.where(
+        @person.where(
           "status = ? AND date_of_birth BETWEEN ? AND ?", 0, max_date_of_birth(AGE_OF_REMAJA), min_date_of_birth(AGE_OF_REMAJA)
           )
       when 'muda_mudi'
-        Person.where(
+        @person.where(
           "status = ? AND date_of_birth BETWEEN ? AND ?", 0, max_date_of_birth(AGE_OF_MUDA_MUDI), min_date_of_birth(AGE_OF_MUDA_MUDI)
           )
       when 'pembina'
-        Person.where(
+        @person.where(
           "status != ? AND date_of_birth BETWEEN ? AND ?", 0, max_date_of_birth(AGE_OF_PEMBINA), min_date_of_birth(AGE_OF_MUDA_MUDI)
           )
       when 'lansia'
-        Person.where(
+        @person.where(
           "date_of_birth BETWEEN ? AND ?", max_date_of_birth(AGE_OF_LANSIA), min_date_of_birth(AGE_OF_LANSIA)
           )
       else
-        Person.all
+        @person
       end
 
     [result.female, result.male]

@@ -1,6 +1,15 @@
 <script>
   $(document).ready(function() {
     loadSidebarToggle();
-    loadBarChart(gon.kelompok_names, gon.person_each_kelompok, gon.number_of_people);
+    loadMultipleDatasetChart('myMultipleChart', gon.kelompok_names_and_people, gon.female_each_areas, gon.male_each_areas, gon.number_of_people);
+
+    loadPieChartSex('PieChartJenisKelamin', gon.sex, [gon.female_all, gon.male_all]);
+    loadDonutChart('DonutChartBalita', gon.sex, [gon.female_balitas], [gon.male_balitas]);
+    loadDonutChart('DonutChartCaberawit', gon.sex, [gon.female_caberawits], [gon.male_caberawits]);
+    loadDonutChart('DonutChartPraRemaja', gon.sex, [gon.female_pra_remajas], [gon.male_pra_remajas]);
+    loadDonutChart('DonutChartRemaja', gon.sex, [gon.female_remajas], [gon.male_remajas]);
+    loadDonutChart('DonutChartMudaMudi', gon.sex, [gon.female_muda_mudis], [gon.male_muda_mudis]);
+    loadDonutChart('DonutChartPembina', gon.sex, [gon.female_pembinas], [gon.male_pembinas]);
+    loadDonutChart('DonutChartLansia', gon.sex, [gon.female_lansias], [gon.male_lansias]);
   });
 </script>

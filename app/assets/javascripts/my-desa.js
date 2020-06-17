@@ -1,8 +1,8 @@
 function setNewDesa(){
   $.ajax({
-  type: 'GET',
-  dataType: 'script',
-  url: '/desas/new'
+    type: 'GET',
+    dataType: 'script',
+    url: '/desas/new'
   });
 };
 
